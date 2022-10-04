@@ -69,9 +69,10 @@ function render() {
         const max = Math.max(Math.abs(0 - item.initX), Math.abs(0 - item.initY));
         item.position.z += (100 - max) / 50;
         if (item.position.z > 100) {
-            scene.getObjectByProperty('uuid', item.uuid).geometry.dispose();
-            scene.getObjectByProperty('uuid', item.uuid).material.dispose();
-            scene.remove(scene.getObjectByProperty('uuid', item.uuid));
+            const object = scene.getObjectByProperty('uuid', item.uuid);
+            object.geometry.dispose();
+            object.material.dispose();
+            scene.remove(object);
             rainList.splice(index, 1);
         }
     });
